@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  # --- MySQL Database ---
+  mysql:
+    image: mysql:8.0
+    container_name: barista-mysql
+    environment:
+      MYSQL_DATABASE: barista_db
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_USER: baristauser
+      MYSQL_PASSWORD: barista123
+    ports:
+      - "3307:3306" # Mapped to 3307 to avoid conflicts with local MySQL
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - barista-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # --- Backend (Spring Boot) ---
+  backend:
+    build: ./backend
+    container_name: barista-backend
+    ports:
+      - "8081:8081"
+    environment:
+      # Connects to the 'mysql' service defined above
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/barista_db?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: baristauser
+      SPRING_DATASOURCE_PASSWORD: barista123
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - barista-network
+
+  # --- Frontend (Node/React) ---
+  frontend:
+    build: ./frontend
+    container_name: barista-frontend
+    ports:
+      - "3000:3000"
+    command: [ "npm", "start" ]
+    environment:
+      - REACT_APP_API_URL=http://localhost:8081
+    depends_on:
+      - backend
+    networks:
+      - barista-network
+
+volumes:
+  mysql_data:
+
+
+networks:
+  barista-network:
+    driver: bridge
