@@ -1,0 +1,454 @@
+/* SimulationStats.css */
+
+.simulation-container {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.simulation-container h2 {
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.run-btn {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 2rem;
+}
+
+.run-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 62, 37, 0.3);
+}
+
+.run-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.run-btn.loading {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.error-message {
+    background: #fee;
+    color: var(--danger-color);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Results Table */
+.results-table-container {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.results-table th,
+.results-table td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.results-table th {
+    background: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+}
+
+.results-table th:first-child {
+    border-radius: 8px 0 0 0;
+}
+
+.results-table th:last-child {
+    border-radius: 0 8px 0 0;
+}
+
+.results-table tbody tr {
+    transition: background 0.2s ease;
+}
+
+.results-table tbody tr:hover {
+    background: rgba(99, 62, 37, 0.05);
+}
+
+.results-table .test-number {
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.results-table .wait-time {
+    font-family: 'Courier New', monospace;
+    font-weight: 600;
+}
+
+.results-table tr.excellent .wait-time {
+    color: var(--success-color);
+}
+
+.results-table tr.good .wait-time {
+    color: #27ae60;
+}
+
+.results-table tr.warning .wait-time {
+    color: var(--warning-color);
+}
+
+.results-table tr.critical .wait-time {
+    color: var(--danger-color);
+}
+
+.results-table tr.selected {
+    background: rgba(99, 62, 37, 0.15);
+    box-shadow: inset 4px 0 0 var(--primary-color);
+}
+
+.click-hint {
+    font-size: 0.8rem;
+    margin-left: 0.5rem;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
+}
+
+.results-table tr:hover .click-hint {
+    opacity: 1;
+}
+
+.results-table .has-complaints {
+    color: var(--danger-color);
+    font-weight: 700;
+}
+
+/* Order Details Section */
+.order-details-section {
+    margin: 2rem 0;
+    padding: 2rem;
+    background: #fdfaf7;
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.order-details-section h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.order-legend {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.orders-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+    max-height: 600px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+}
+
+.order-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+}
+
+.order-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.order-card.abandoned {
+    border-left: 5px solid var(--warning-color);
+    background: #fffcf5;
+}
+
+.order-card.complaint {
+    border-left: 5px solid var(--danger-color);
+    background: #fff8f8;
+}
+
+.order-card.completed {
+    border-left: 5px solid var(--success-color);
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+}
+
+.order-num {
+    font-weight: 800;
+    color: var(--primary-color);
+}
+
+.order-time {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    background: rgba(139, 90, 43, 0.1);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+}
+
+.order-customer {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.order-info {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.loyalty {
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.75rem;
+}
+
+.loyalty.gold {
+    background: #ffd700;
+    color: #5c4d00;
+}
+
+.loyalty.silver {
+    background: #c0c0c0;
+    color: #333;
+}
+
+.loyalty.bronze {
+    background: #cd7f32;
+    color: white;
+}
+
+.loyalty.none {
+    background: #f0f0f0;
+    color: #666;
+}
+
+.order-drinks {
+    font-style: italic;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.order-wait {
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.order-barista {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+/* Summary Section */
+.summary-section {
+    background: linear-gradient(135deg, rgba(99, 62, 37, 0.05) 0%, rgba(139, 90, 43, 0.05) 100%);
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.summary-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.summary-card {
+    background: white;
+    padding: 1.25rem;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.summary-card .label {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+}
+
+.summary-card .value {
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.summary-card .value.success {
+    color: var(--success-color);
+}
+
+.summary-card .value.warning {
+    color: var(--warning-color);
+}
+
+.summary-card .target {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.25rem;
+}
+
+.summary-card.highlight {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+}
+
+.summary-card.highlight .label,
+.summary-card.highlight .value,
+.summary-card.highlight .target {
+    color: white;
+}
+
+/* Barista Distribution */
+.barista-distribution {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+}
+
+.barista-distribution h4 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.barista-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.barista-bar {
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    align-items: center;
+    gap: 1rem;
+}
+
+.barista-bar .name {
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.barista-bar .bar-container {
+    height: 24px;
+    background: #eee;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.barista-bar .bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+    border-radius: 12px;
+    transition: width 0.5s ease;
+}
+
+.barista-bar .count {
+    text-align: right;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+@media (max-width: 768px) {
+    .summary-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .barista-bar {
+        grid-template-columns: 80px 1fr 80px;
+    }
+
+    .results-table {
+        font-size: 0.85rem;
+    }
+
+    .results-table th,
+    .results-table td {
+        padding: 0.75rem 0.5rem;
+    }
+}

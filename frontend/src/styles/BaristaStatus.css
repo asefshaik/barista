@@ -1,0 +1,232 @@
+/* BaristaStatus.css */
+
+.barista-status-container {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.barista-status-container h2 {
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.baristas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+}
+
+.barista-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 3px solid var(--border-color);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.barista-card.busy {
+    border-color: var(--warning-color);
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.05) 0%, rgba(243, 156, 18, 0.02) 100%);
+}
+
+.barista-card.available {
+    border-color: var(--success-color);
+    background: linear-gradient(135deg, rgba(39, 174, 96, 0.05) 0%, rgba(39, 174, 96, 0.02) 100%);
+}
+
+.barista-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.barista-header h3 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+}
+
+.status-indicator {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.status-indicator.busy {
+    background: #fee;
+    color: var(--danger-color);
+}
+
+.status-indicator.available {
+    background: #efe;
+    color: var(--success-color);
+}
+
+.barista-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.stat {
+    background: var(--bg-color);
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat span {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.25rem;
+}
+
+.stat strong {
+    display: block;
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.current-order {
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.current-order h4 {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
+}
+
+.barista-order-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.75rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.barista-customer {
+    font-weight: 800;
+    margin-bottom: 0.25rem;
+    color: var(--primary-color);
+}
+
+.barista-drinks {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.time-remaining {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.current-order .countdown-timer {
+    background: var(--bg-color);
+    padding: 0.5rem;
+    border-radius: 6px;
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.current-order .countdown-timer .timer-label {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.current-order .countdown-timer .timer-value {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: 800;
+    font-family: 'Courier New', monospace;
+}
+
+.time-status {
+    background: var(--bg-color);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.time-status .label {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.time {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.time.busy {
+    color: var(--warning-color);
+}
+
+.time.available {
+    color: var(--success-color);
+}
+
+.workload-indicator {
+    background: var(--bg-color);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.workload-bar {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.workload-bar .fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--success-color), var(--warning-color));
+    transition: width 0.3s ease;
+}
+
+.barista-card.high .workload-bar .fill {
+    background: linear-gradient(90deg, var(--warning-color), var(--danger-color));
+}
+
+.workload-label {
+    display: block;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+    .baristas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .barista-stats {
+        grid-template-columns: 1fr;
+    }
+}

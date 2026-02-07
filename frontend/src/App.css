@@ -1,0 +1,117 @@
+/* App.css - Main Application Styles */
+
+.app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f1ed 0%, #f9f7f4 100%);
+}
+
+.app-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.app-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.app-nav {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background: white;
+    border-bottom: 2px solid var(--border-color);
+    overflow-x: auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+
+.nav-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid transparent;
+    background: var(--bg-color);
+    color: var(--text-primary);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.nav-btn:hover {
+    background: var(--secondary-color);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.nav-btn.active {
+    background: var(--primary-color);
+    color: white;
+    border-color: var(--secondary-color);
+    box-shadow: 0 4px 12px rgba(139, 69, 19, 0.3);
+}
+
+.app-main {
+    flex: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.tab-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.app-footer {
+    background: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: auto;
+    font-size: 0.9rem;
+    opacity: 0.95;
+}
+
+@media (max-width: 768px) {
+    .app-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .app-nav {
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .nav-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
+
+    .app-main {
+        padding: 1rem;
+    }
+}
